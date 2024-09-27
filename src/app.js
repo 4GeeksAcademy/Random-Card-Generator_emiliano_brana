@@ -6,7 +6,7 @@ import "./assets/img/rigo-baby.jpg";
 import "./assets/img/4geeks.ico";
 
 let numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-let simbols = [1, 2, 3, 4];
+let simbols = [0, 1, 2, 3];
 let img = ["♦", "♥", "♠", "♣"];
 
 function fNumbers(a) {
@@ -29,15 +29,19 @@ function variables(a, b) {
 let resultado = variables(numbers, simbols);
 console.log(resultado);
 
-function render(vars) {
+function render(resultado) {
   document.querySelector("#widget_content").innerHTML = `
     <div class="card"> 
-      <div class="simbol">${img[vars.symbol]}</div>
-      <div class="number">${vars.number}</div>
-      <div class="simbol">${img[vars.symbol]}</div>
+      <div class="simbol">${img[resultado.symbol]}</div>
+      <div class="number">${resultado.number}</div>
+      <div class="simbol">${img[resultado.symbol]}</div>
     </div>
   `;
 }
 window.onload = function() {
   render(resultado);
+
+  // console.log(img[vars.symbol]);
+  // console.log(simbols);
+  // console.log(vars.number);
 };
