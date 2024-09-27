@@ -32,13 +32,12 @@ console.log(resultado);
 function render(resultado) {
   document.querySelector("#widget_content").innerHTML = `
     <div class="card"> 
-      <div class="simbol">${img[resultado.symbol]}</div>
+      <div class="simbolt">${img[resultado.symbol]}</div>
       <div class="number">${resultado.number}</div>
-      <div class="simbol">${img[resultado.symbol]}</div>
+      <div class="simbolb">${img[resultado.symbol]}</div>
     </div>
   `;
 }
 window.onload = function() {
   render(resultado);
-
 };
