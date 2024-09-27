@@ -41,7 +41,4 @@ function render(resultado) {
 window.onload = function() {
   render(resultado);
 
-  // console.log(img[vars.symbol]);
-  // console.log(simbols);
-  // console.log(vars.number);
 };
