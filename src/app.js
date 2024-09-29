@@ -34,9 +34,32 @@ let render = resultado => {
 let renderbtn = () => {
   document.querySelector("#widget_content").insertAdjacentHTML(
     "beforeend",
-    `<button type="button" id="rndCard" class="btn btn-light ms-5">Random Card</button>
-      <button type="button" id="cardTime" class="btn btn-light ms-5">Card by time</button>
-      <button type="button" id="stopTime" class="btn btn-danger ms-5 d-none">Stop</button>
+    `<div class="d-flex flex-column justify-content-center text-center">
+    <button type="button" id="rndCard" class="btn btn-light ms-5 mb-2">Random Card</button>
+      <button type="button" id="cardTime" class="btn btn-light ms-5 mb-2">Card by time</button>
+      <button type="button" id="stopTime" class="btn btn-danger ms-5 d-none justify-content-center mb-2">Stop</button>
+      
+    <div class="btn-group ms-5">
+  <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+    Custom Size <i class="fa-solid fa-screwdriver-wrench"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+   
+  <li><div class="input-group form-control-sm">
+  <span class="input-group-text">Height</span>
+  <input type="number" aria-label="height" class="form-control" id="height">
+</div></li>
+    
+
+
+    <li><div class="input-group form-control-sm">
+  <span class="input-group-text">Width</span>
+  <input type="number" aria-label="width" class="form-control" id="width">
+</div></li>
+  </ul>
+</div>
+
+      </div>
       `
   );
 };
@@ -74,5 +97,21 @@ window.onload = function() {
     timer = null;
     document.querySelector("#stopTime").classList.replace("d-flex", "d-none");
     document.querySelector("#cardTime").classList.replace("d-none", "d-flex");
+  });
+
+  document.querySelector("#height").addEventListener("input", event => {
+    let customHeight = event.target.value;
+    let scaleY = customHeight / 500;
+    let card = document.querySelector("#card-display");
+    card.style.height = `${customHeight}px`;
+    card.style.transform = `scaleY(${scaleY})`;
+  });
+
+  document.querySelector("#width").addEventListener("input", event => {
+    let customWidth = event.target.value;
+    let scaleX = customWidth / 350;
+    let card = document.querySelector("#card-display");
+    card.style.width = `${customWidth}px`;
+    card.style.transform = `scaleX(${scaleX})`;
   });
 };

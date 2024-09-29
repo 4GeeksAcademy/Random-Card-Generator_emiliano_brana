@@ -1,5 +1,10 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
+#card-display {
+  transition: transform 2s;
+  transform-origin: center;
+}
+
 .card {
   height: 500px;
   width: 350px;
