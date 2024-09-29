@@ -32,16 +32,28 @@ let render = resultado => {
 };
 
 let renderbtn = () => {
-  document
-    .querySelector("#widget_content")
-    .insertAdjacentHTML(
-      "beforeend",
-      `<button type="button" id="rndCard" class="btn btn-light ms-5">Random Card</button><button type="button" id="cardTime" class="btn btn-light ms-5">Card by time</button>`
-    );
+  document.querySelector("#widget_content").insertAdjacentHTML(
+    "beforeend",
+    `<button type="button" id="rndCard" class="btn btn-light ms-5">Random Card</button>
+      <button type="button" id="cardTime" class="btn btn-light ms-5">Card by time</button>
+      <button type="button" id="stopTime" class="btn btn-danger ms-5 d-none">Stop</button>
+      `
+  );
 };
 
 document.querySelector("#widget_content").style.height =
   window.innerHeight + "px";
+
+let timer;
+
+function intervalId() {
+  if (!timer) {
+    timer = setInterval(() => {
+      render(variables(numbers, simbols));
+      console.log("1");
+    }, 2000);
+  }
+}
 
 window.onload = function() {
   render(resultado);
@@ -49,5 +61,18 @@ window.onload = function() {
 
   document.querySelector("#rndCard").addEventListener("click", function() {
     render(variables(numbers, simbols));
+  });
+
+  document.querySelector("#cardTime").addEventListener("click", () => {
+    intervalId();
+    document.querySelector("#cardTime").classList.add("d-none");
+    document.querySelector("#stopTime").classList.replace("d-none", "d-flex");
+  });
+
+  document.querySelector("#stopTime").addEventListener("click", () => {
+    clearInterval(timer);
+    timer = null;
+    document.querySelector("#stopTime").classList.replace("d-flex", "d-none");
+    document.querySelector("#cardTime").classList.replace("d-none", "d-flex");
   });
 };
