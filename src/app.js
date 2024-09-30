@@ -36,28 +36,24 @@ let renderbtn = () => {
     "beforeend",
     `<div class="d-flex flex-column justify-content-center text-center">
     <button type="button" id="rndCard" class="btn btn-light ms-5 mb-2">Random Card</button>
-      <button type="button" id="cardTime" class="btn btn-light ms-5 mb-2">Card by time</button>
-      <button type="button" id="stopTime" class="btn btn-danger ms-5 d-none justify-content-center mb-2">Stop</button>
+    <button type="button" id="cardTime" class="btn btn-light ms-5 mb-2">Card by time</button>
+    <button type="button" id="stopTime" class="btn btn-danger ms-5 d-none justify-content-center mb-2">Stop</button>
       
-    <div class="btn-group ms-5">
+  <div class="btn-group ms-5">
   <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
     Custom Size <i class="fa-solid fa-screwdriver-wrench"></i>
   </button>
   <ul class="dropdown-menu dropdown-menu-end">
-   
   <li><div class="input-group form-control-sm">
   <span class="input-group-text">Height</span>
   <input type="number" aria-label="height" class="form-control" id="height">
-</div></li>
-    
-
-
-    <li><div class="input-group form-control-sm">
+  </div></li>
+  <li><div class="input-group form-control-sm">
   <span class="input-group-text">Width</span>
   <input type="number" aria-label="width" class="form-control" id="width">
-</div></li>
+  </div></li>
   </ul>
-</div>
+  </div>
 
       </div>
       `
@@ -102,16 +98,30 @@ window.onload = function() {
   document.querySelector("#height").addEventListener("input", event => {
     let customHeight = event.target.value;
     let scaleY = customHeight / 500;
-    let card = document.querySelector("#card-display");
-    card.style.height = `${customHeight}px`;
-    card.style.transform = `scaleY(${scaleY})`;
+    if (scaleY != 0) {
+      let card = document.querySelector("#card-display");
+      card.style.height = `${customHeight}px`;
+      card.style.transform = `scaleY(${scaleY})`;
+    }
+    if (scaleY === 0) {
+      let card = document.querySelector("#card-display");
+      card.style.height = `500px`;
+      card.style.transform = `scaleY(1)`;
+    }
   });
 
   document.querySelector("#width").addEventListener("input", event => {
     let customWidth = event.target.value;
     let scaleX = customWidth / 350;
-    let card = document.querySelector("#card-display");
-    card.style.width = `${customWidth}px`;
-    card.style.transform = `scaleX(${scaleX})`;
+    if (scaleX != 0) {
+      let card = document.querySelector("#card-display");
+      card.style.width = `${customWidth}px`;
+      card.style.transform = `scaleX(${scaleX})`;
+    }
+    if (scaleX === 0) {
+      let card = document.querySelector("#card-display");
+      card.style.width = `350px`;
+      card.style.transform = `scaleX(1)`;
+    }
   });
 };
